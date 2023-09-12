@@ -1,4 +1,4 @@
-(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const f of document.querySelectorAll('link[rel="modulepreload"]'))p(f);new MutationObserver(f=>{for(const h of f)if(h.type==="childList")for(const c of h.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&p(c)}).observe(document,{childList:!0,subtree:!0});function a(f){const h={};return f.integrity&&(h.integrity=f.integrity),f.referrerPolicy&&(h.referrerPolicy=f.referrerPolicy),f.crossOrigin==="use-credentials"?h.credentials="include":f.crossOrigin==="anonymous"?h.credentials="omit":h.credentials="same-origin",h}function p(f){if(f.ep)return;f.ep=!0;const h=a(f);fetch(f.href,h)}})();console.log(globalThis);const kt="input-module_input__o5pc",Pt="input-module_container__MzvQ",Ct="input-module_label__Q4cF",Lt="input-module_element__YLRm";const wt=`
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const f of document.querySelectorAll('link[rel="modulepreload"]'))p(f);new MutationObserver(f=>{for(const h of f)if(h.type==="childList")for(const c of h.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&p(c)}).observe(document,{childList:!0,subtree:!0});function a(f){const h={};return f.integrity&&(h.integrity=f.integrity),f.referrerPolicy&&(h.referrerPolicy=f.referrerPolicy),f.crossOrigin==="use-credentials"?h.credentials="include":f.crossOrigin==="anonymous"?h.credentials="omit":h.credentials="same-origin",h}function p(f){if(f.ep)return;f.ep=!0;const h=a(f);fetch(f.href,h)}})();const kt="input-module_input__o5pc",Pt="input-module_container__MzvQ",Ct="input-module_label__Q4cF",Lt="input-module_element__YLRm";const wt=`
     <div class="${kt}">
         <label class="${Pt}">
             <input
@@ -39,6 +39,7 @@
         page="{{page}}"
         type="submit"
         value="{{label}}"
+        name="submit"
     />
 `,Dt="startForm-module_start-form__aoNs";const Bt=`
     <form class="${Dt}">
@@ -135,11 +136,11 @@ Expecting `+x.join(", ")+", got '"+(this.terminals_[b]||b)+"'":F="Parse error on
             <h2>Регистрация</h2>
             {{> Input label="Почта" name="email"}}
             {{> Input label="Логин" name="login"}}
-            {{> Input label="Имя" name="name"}}
-            {{> Input label="Фамилия" name="surname"}}
+            {{> Input label="Имя" name="first_name"}}
+            {{> Input label="Фамилия" name="second_name"}}
             {{> Input label="Телефон" name="phone"}}
-            {{> Input label="Пароль" type="password" name="pass"}}
-            {{> Input label="Пароль (ещё раз)" type="password" name="confPass"}}            
+            {{> Input label="Пароль" type="password" name="password"}}
+            {{> Input label="Пароль (ещё раз)" type="password" name="password_confirm"}}            
             {{> SubmitButton label="Зарегистрироваться"}}
             {{> Button label="Войти" type="link" page="ChatsPage"}}
         {{/StartForm}}
@@ -152,11 +153,11 @@ Expecting `+x.join(", ")+", got '"+(this.terminals_[b]||b)+"'":F="Parse error on
         <div class="${mi}">
         {{#> SetForm}}
         <h2>chatID</h2>
-            {{> SetInput name="email" value="middle@ya.ru" label="Почта"}}
+            {{> SetInput label="Почта" name="email" value="middle@ya.ru"}}
             {{> SetInput label="Логин" name="login" value="middle@ya.ru"}}
-            {{> SetInput label="Имя" name="name" value="middle@ya.ru"}}
-            {{> SetInput label="Фамилия" name="surname" value="middle@ya.ru"}}
-            {{> SetInput label="Никнейм" name="Иван" value="middle@ya.ru"}}
+            {{> SetInput label="Имя" name="first_name" value="middle@ya.ru"}}
+            {{> SetInput label="Фамилия" name="second_name" value="middle@ya.ru"}}
+            {{> SetInput label="Никнейм" name="nickname" value="middle@ya.ru"}}
             {{> SetInput label="Телефон" name="phone" value="middle@ya.ru"}}
             {{> Button label="Изменить данные" type="link"}}
             {{> Button label="Изменить пароль" type="link" page="PasswordPage"}}
@@ -173,9 +174,9 @@ Expecting `+x.join(", ")+", got '"+(this.terminals_[b]||b)+"'":F="Parse error on
         <div class="${Si}">
         {{#> SetForm}}
         <h2>chatID</h2>
-            {{> SetInput label="Старый пароль" name="oldPass" type ="password" on=true}}
-            {{> SetInput label="Новый пароль" name="newPass" type ="password" on=true}}
-            {{> SetInput label="Повторите пароль" name="confPass" type ="password" on=true}}
+            {{> SetInput label="Старый пароль" name="password_old" type ="password" on=true}}
+            {{> SetInput label="Новый пароль" name="password_new" type ="password" on=true}}
+            {{> SetInput label="Повторите пароль" name="password_confirm" type ="password" on=true}}
             {{> SubmitButton label="Сохранить" page="ErrorHandle"}}
         {{/SetForm}}
         </div>
