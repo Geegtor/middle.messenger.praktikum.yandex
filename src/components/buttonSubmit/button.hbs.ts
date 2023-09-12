@@ -7,6 +7,7 @@ const submitButton : string = `
         page="{{page}}"
         type="submit"
         value="{{label}}"
+        name="submit"
     />
 `;
 

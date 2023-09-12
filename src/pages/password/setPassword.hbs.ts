@@ -8,9 +8,9 @@ const SetPassword = `
         <div class="${styles.formContainer}">
         {{#> SetForm}}
         <h2>chatID</h2>
-            {{> SetInput label="Старый пароль" name="oldPass" type ="password" on=true}}
-            {{> SetInput label="Новый пароль" name="newPass" type ="password" on=true}}
-            {{> SetInput label="Повторите пароль" name="confPass" type ="password" on=true}}
+            {{> SetInput label="Старый пароль" name="password_old" type ="password" on=true}}
+            {{> SetInput label="Новый пароль" name="password_new" type ="password" on=true}}
+            {{> SetInput label="Повторите пароль" name="password_confirm" type ="password" on=true}}
             {{> SubmitButton label="Сохранить" page="ErrorHandle"}}
         {{/SetForm}}
         </div>
