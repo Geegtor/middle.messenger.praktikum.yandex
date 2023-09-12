@@ -1,0 +1,36 @@
+{
+  "name": "webchat",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "chat",
+  "main": "index.js",
+  "engines": {
+    "node": ">=14.21.3"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite build && node server.js"
+  },
+  "keywords": [
+    "chat",
+    "netlify"
+  ],
+  "browserslist": [
+    "defaults"
+  ],
+  "author": "dmEfre",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "handlebars": "^4.7.8",
+    "stylelint-config-standard": "^34.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
