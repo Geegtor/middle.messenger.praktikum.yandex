@@ -10,6 +10,7 @@ export const ChatsPage = `
                 <label class="${styles.label}">
                     <input 
                         class="${styles.input}"
+                        name="search"
                         placeholder="Поиск"
                     />
                 <label/>

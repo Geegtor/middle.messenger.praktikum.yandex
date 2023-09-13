@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => navigate("LoginPage"));
 
 document.addEventListener("click", (e: EventTarget | any): void => {
   const page = e.target.getAttribute("page");
-
   e.preventDefault();
   e.stopImmediatePropagation();
   if (page) {

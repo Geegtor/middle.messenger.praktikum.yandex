@@ -12,7 +12,7 @@ const ProfilePage = `
             {{> SetInput label="Логин" name="login" value="middle@ya.ru"}}
             {{> SetInput label="Имя" name="first_name" value="middle@ya.ru"}}
             {{> SetInput label="Фамилия" name="second_name" value="middle@ya.ru"}}
-            {{> SetInput label="Никнейм" name="nickname" value="middle@ya.ru"}}
+            {{> SetInput label="Имя в чате" name="display_name" value="middle@ya.ru"}}
             {{> SetInput label="Телефон" name="phone" value="middle@ya.ru"}}
             {{> Button label="Изменить данные" type="link"}}
             {{> Button label="Изменить пароль" type="link" page="PasswordPage"}}
