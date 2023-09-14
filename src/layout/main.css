@@ -1,0 +1,27 @@
+:root {
+  --main-color: #3369f3;
+  --second-color: #efefef;
+  --error-color: #ff2f2f;
+  --text-color: #1e1e1e;
+  --text-secondary-color: #999;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #fff;
+  }
+}
