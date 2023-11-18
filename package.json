@@ -1,7 +1,7 @@
 {
   "name": "webchat",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "description": "chat",
   "main": "index.js",
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "lint": "stylelint --fix  **/*.css & eslint --fix src/",
     "build": "vite build",
     "preview": "vite preview",
     "start": "vite build && node server.js"
@@ -24,8 +25,12 @@
   "author": "dmEfre",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
     "autoprefixer": "^10.4.15",
+    "eslint": "^8.51.0",
     "handlebars": "^4.7.8",
+    "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9"
