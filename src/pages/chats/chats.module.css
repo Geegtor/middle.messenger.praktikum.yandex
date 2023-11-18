@@ -26,7 +26,6 @@
     align-items: center;
     padding-right: 10px;
     height: 45px;
-
     background-color: white;
 }
 
@@ -53,7 +52,6 @@
     background-color: var(--second-color);
     border-radius: 5px;
     border: 0;
-
     text-align: center;
     width: 95%; 
     height: 95%;

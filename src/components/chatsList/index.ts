@@ -42,7 +42,7 @@ Handlebars.registerHelper('chats', () => {
             chatID: "Qwerty2",
             time: "12:36",
             unred: "4"
-        },,
+        },
         {
             message: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
             chatID: "Qwerty1",
@@ -53,7 +53,7 @@ Handlebars.registerHelper('chats', () => {
             chatID: "Qwerty2",
             time: "12:36",
             unred: "4"
-        },,
+        },
         {
             message: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
             chatID: "Qwerty1",
@@ -64,7 +64,7 @@ Handlebars.registerHelper('chats', () => {
             chatID: "Qwerty2",
             time: "12:36",
             unred: "4"
-        },,
+        },
         {
             message: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
             chatID: "Qwerty1",

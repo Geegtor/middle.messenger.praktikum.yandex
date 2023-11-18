@@ -24,7 +24,11 @@ function navigate(page: string): void {
 
 document.addEventListener("DOMContentLoaded", () => navigate("LoginPage"));
 
-document.addEventListener("click", (e: EventTarget | any): void => {
+type HTMLElementEvent<T extends HTMLElement> = Event & {
+  target: T; 
+}
+
+document.addEventListener("click", (e: HTMLElementEvent<any>): void => {
   const page = e.target.getAttribute("page");
   e.preventDefault();
   e.stopImmediatePropagation();
