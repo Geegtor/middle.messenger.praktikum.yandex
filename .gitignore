@@ -6,7 +6,7 @@
 
 /build
 
-/src/utils
+/.vite
 
 netlify.toml
 
