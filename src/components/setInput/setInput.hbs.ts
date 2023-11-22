@@ -1,19 +1,43 @@
+import Block, { Props } from "../../core/block";
 import * as styles from "./setInput.module.css";
 
-const SetInput : string = `
-    <div class="${styles.container}">
-        <label class="${styles.container}">
-            {{label}}
-        </label>
-        <input
-            class="${styles.input}"
-            name="{{name}}"
-            label="{{label}}"
-            value="{{value}}"
-            type="{{type}}"
-            {{#unless on}}disabled{{/unless}}
-        />
-    </div>
-`;
-
+class SetInput extends Block {
+    constructor(props: Props) {
+        super({
+            ...props,
+            onBlur: () => this.validate(),
+            onSubmit: () => this.validate(),
+        })
+    }
+    public value() {
+        if (!this.validate) {
+            return null;
+        }
+        return this.refs.input.element?.value
+    }
+    private validate() {
+        const value = this.refs.input.element?.value;
+        const error = this.props.validate?.(value);
+        if (error) {
+            this.refs.errorLine.setProps({ error });
+            return false;
+        }
+        this.refs.errorLine.setProps({ error: undefined });
+        return true;
+    }
+    render() {
+        return (`
+            <div class="${styles.container}">
+                <label class="${styles.container}">
+                    {{label}}
+                </label>
+                {{{ InputLine
+                        ref = "input"
+                        onBlur = onBlur
+                        onSubmit=onSubmit
+                }}}
+            </div>
+        `)
+    }
+}
 export default SetInput;

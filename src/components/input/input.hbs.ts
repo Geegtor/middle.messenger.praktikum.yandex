@@ -1,18 +1,45 @@
+import Block, { Props } from "../../core/block";
 import * as styles from "./input.module.css";
 
-const input : string = `
-    <div class="${styles.input}">
-        <label class="${styles.container}">
-            <input
-                class="${styles.element}"
-                placeholder="{{pholder}}"
-                name="{{name}}"
-                type="{{type}}"
-                value="{{value}}"
-            />
-            <div class="${styles.label}">{{label}}</div>
-        </label>
-    </div>
-`;
+class Input extends Block {
+    constructor(props: Props) {
+        super({
+            ...props,
+            onBlur: () => this.validate(),
+            onSubmit: () => this.validate(),
+        })
+    }
+    public value() {
+        if (!this.validate) {
+            return null;
+        }
+        return this.refs.input.element?.value
+    }
+    private validate() {
+        const value = this.refs.input.element?.value;
+        const error = this.props.validate?.(value);
+        if (error) {
+            this.refs.errorLine.setProps({ error });
+            return false;
+        }
+        this.refs.errorLine.setProps({ error: undefined });
+        return true;
+    }
+    render() {
+        return (`
+            <div class="${styles.input}">
+                <label class="${styles.container}">
+                    {{{ InputLine 
+                            ref="input"
+                            onBlur=onBlur
+                            onSubmit=onSubmit
+                    }}}
+                    <div class="${styles.label}">{{label}}</div>
+                </label>
+                {{{ ErrorLine error=${this.props.errorLine} ref="errorLine"}}}
+            </div>
+        `)
+    }
+}
 
-export default input; 
+export default Input;

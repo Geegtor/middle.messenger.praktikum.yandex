@@ -1,7 +1,5 @@
-import Handlebars from "handlebars";
-
 export {default as ChatsList} from "./chatsList.hbs.ts"
-
+/*
 Handlebars.registerHelper('chats', () => {
     return [
         {
@@ -78,3 +76,4 @@ Handlebars.registerHelper('chats', () => {
         },
     ]
 });
+*/

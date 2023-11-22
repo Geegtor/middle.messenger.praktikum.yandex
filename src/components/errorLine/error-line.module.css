@@ -1,0 +1,9 @@
+.validation {
+  transform: translateY(-18px);
+  color: red;
+  height: 15px;
+  font-size: 10px;
+  font-weight: 500;
+  user-select: none;
+  align-self: start;
+}
