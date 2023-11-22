@@ -16,13 +16,21 @@
  - верстка основных компонентов
  - сборка страниц приложения
 
-PR: https://github.com/Geegtor/middle.messenger.praktikum.yandex/pull/1
-netlify: https://ubiquitous-banoffee-df6090.netlify.app/
+ **Sprint_2**
+ - добавление утилит (EventBus, HTTP запросы)
+ - внедрение базового компонента
+ - валидация форм
+
+PR: 
+ - sprint_1: https://github.com/Geegtor/middle.messenger.praktikum.yandex/pull/1
+
+Netlify: https://ubiquitous-banoffee-df6090.netlify.app/
 
 
 ## Установка и запуск
 
 - `npm install` — установка пакетов проекта
+- `npm run lint` — запуск ESlint и Stylelint с флагом --fix
 - `npm run dev` — запуск версии для разработки, http://localhost:5173/
 - `npm start` — сборка стабильной версии, http://localhost:3000/
 
@@ -39,3 +47,16 @@ netlify: https://ubiquitous-banoffee-df6090.netlify.app/
 - `Изменить пароль`
 - `Сохранить`
 - `Назад к чатам`
+
+В рамках второго спринта возможно проверить валидацию форм и получить значение в консоли 
+(нажатием синей кнопки). Для перемещения между страницами используются следующие кнопки:
+
+
+- `Назад к чатам`
+- `Нет аккаунта?`
+- `Войти`
+- `@` (временная заглушка для кнопки "прикрепить файл")
+- `Изменить пароль`
+- `<-`
+
+TODO: вёрста пострадала при при переходе к компонентному подходу, будет доделана позднее.
