@@ -67,5 +67,5 @@ export function login(str: string): string {
       return 'Should contain between 10 and 15 digits';
     }
     return '';
-  }
+}
   

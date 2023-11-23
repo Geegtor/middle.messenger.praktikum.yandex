@@ -11,4 +11,4 @@ export function queryStringify(data: Record<string, unknown>): string {
       }
     }
     return query.slice(0, -1);
-  }
+}
