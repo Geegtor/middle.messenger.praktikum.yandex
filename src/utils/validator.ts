@@ -68,4 +68,3 @@ export function login(str: string): string {
     }
     return '';
 }
-  
