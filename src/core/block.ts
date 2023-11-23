@@ -18,7 +18,7 @@ class Block {
   protected refs: Record<string, Block> = {};
   public children: Record<string, Block>;
   private eventBus: () => EventBus;
-  private _element: HTMLElement | HTMLInputElement | null = null;
+  private _element: HTMLInputElement | HTMLElement | null = null;
   private _meta: { props: Props; };
 
   constructor(propsWithChildren: Props = {}) {
@@ -128,7 +128,7 @@ class Block {
 
     this._addEvents();
   }
-
+  
   private compile(template: string, context: Props) {
     const contextAndStubs = {...context, __refs: this.refs};
 

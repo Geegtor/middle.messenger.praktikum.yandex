@@ -1,5 +1,4 @@
 export { Input } from "./input/index";
-export { SetInput} from "./setInput/index";
 export { Button } from "./button/index";
 export { SubmitButton } from "./buttonSubmit/index";
 export { StartForm } from "./startForm/index";

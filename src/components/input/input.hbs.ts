@@ -13,11 +13,11 @@ class Input extends Block {
         if (!this.validate) {
             return null;
         }
-        return this.refs.input.element?.value
+        return (<HTMLInputElement>this.refs.input.element!).value
     }
     private validate() {
-        const value = this.refs.input.element?.value;
-        const error = this.props.validate?.(value);
+        const value = (<HTMLInputElement>this.refs.input.element!).value;
+        const error = (<CallableFunction>this.props.validate)?.(value);
         if (error) {
             this.refs.errorLine.setProps({ error });
             return false;
