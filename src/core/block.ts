@@ -18,7 +18,7 @@ class Block {
   protected refs: Record<string, Block> = {};
   public children: Record<string, Block>;
   private eventBus: () => EventBus;
-  private _element: HTMLElement | null = null;
+  private _element: HTMLElement | HTMLInputElement | null = null;
   private _meta: { props: Props; };
 
   constructor(propsWithChildren: Props = {}) {
