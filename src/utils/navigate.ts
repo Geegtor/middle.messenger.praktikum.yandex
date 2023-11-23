@@ -12,7 +12,7 @@ export function render(block: Block, query:string = "app") : Element | null {
     return root;
   }
 
-export function navigate(page: string) {
+export function navigate(page: string | null) {
     const pages: Record<string, Block> = {
         "LoginPage": new Pages.LoginPage(),
         "RegisterPage": new Pages.RegisterPage(),
@@ -21,5 +21,6 @@ export function navigate(page: string) {
         "SetPassword": new Pages.SetPassword(),
         "ErrorHandle": new Pages.ErrorHandle()
     }
+    page = page || '';
     render(pages[page]);
 }

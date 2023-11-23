@@ -15,11 +15,12 @@ class Block {
 
   public id = nanoid(6);
   protected props: Props;
-  protected refs: Record<string, Block> = {};
+  protected refs: Record<string, Block | string> = {};
   public children: Record<string, Block>;
   private eventBus: () => EventBus;
   private _element: HTMLInputElement | HTMLElement | null = null;
   private _meta: { props: Props; };
+  public value: CallableFunction = () => {};
 
   constructor(propsWithChildren: Props = {}) {
     const eventBus = new EventBus();
@@ -77,6 +78,7 @@ class Block {
   }
 
   protected init() {
+    null && this._meta
   }
 
   _componentDidMount() {
@@ -132,15 +134,15 @@ class Block {
   private compile(template: string, context: Props) {
     const contextAndStubs = {...context, __refs: this.refs};
 
-    Object.entries(this.children).forEach(([key, child]) => {
-      contextAndStubs[key] = `<div data-id="${child.id}"></div>`;
+    Object.entries(this.children).forEach(([key, child]) => {// eslint-disable-line
+      contextAndStubs[key] = `<div data-id="${child.id}"></div>`;// eslint-disable-line
     })
 
     const html = Handlebars.compile(template)(contextAndStubs);
 
     const temp = document.createElement('template');
 
-    temp.innerHTML = html;
+    temp.innerHTML = html;// eslint-disable-line
     contextAndStubs.__children?.forEach(({embed}: any) => {// eslint-disable-line
       embed(temp.content);
     });
@@ -165,11 +167,11 @@ class Block {
     const self = this; // eslint-disable-line
 
     return new Proxy(props, {
-      get(target, prop) {
+      get(target, prop:string) {
         const value = target[prop];
         return typeof value === "function" ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set(target, prop:string, value) {
         const oldTarget = {...target}
 
         target[prop] = value;

@@ -11,7 +11,7 @@ export default class ChatsPage extends Block {
             },
             onLogin: (event: Event) => {
                 event.preventDefault();
-                const message =  this.refs.message?.value();
+                const message =  (<Block>this.refs.message!).value();
                 if(!message) {
                     return;
                 }
@@ -21,9 +21,9 @@ export default class ChatsPage extends Block {
             },
             onClick: (e: Event) => {
                 e.preventDefault();
-                const page = e.target.getAttribute("page");
+                const page = (<HTMLInputElement>e.target).getAttribute("page");
                 navigate(page);
-            },
+            },  
             chats: [
                 {
                     message: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",

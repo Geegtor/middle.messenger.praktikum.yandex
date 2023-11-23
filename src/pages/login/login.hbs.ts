@@ -13,8 +13,8 @@ export default class LoginPage extends Block {
             },
             onLogin: (event: Event) => {
                 event.preventDefault();
-                const login =  this.refs.login?.value();
-                const password =  this.refs.password?.value();
+                const login =  (<Block>this.refs.login!).value(); 
+                const password =  (<Block>this.refs.password!).value();
 
                 if(!login) {
                     return;
@@ -26,7 +26,7 @@ export default class LoginPage extends Block {
             },
             onClick: (e: Event) => {
                 e.preventDefault();
-                const page = e.target.getAttribute("page");
+                const page = (<HTMLInputElement>e.target).getAttribute("page");
                 navigate(page);
             }
         });

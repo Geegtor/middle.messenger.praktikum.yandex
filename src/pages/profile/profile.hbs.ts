@@ -16,12 +16,12 @@ class ProfilePage extends Block {
             },
             onLogin: (event: Event) => {
                 event.preventDefault();
-                const email =  this.refs.email?.value();
-                const login =  this.refs.login?.value();
-                const first_name =  this.refs.first_name?.value();
-                const second_name =  this.refs.second_name?.value();
-                const phone =  this.refs.login?.value();
-                const password =  this.refs.password?.value();
+                const email =  (<Block>this.refs.email!).value();
+                const login =  (<Block>this.refs.login!).value();
+                const first_name =  (<Block>this.refs.first_name!).value();
+                const second_name =  (<Block>this.refs.second_name!).value();
+                const phone =  (<Block>this.refs.login!).value();
+                const password =  (<Block>this.refs.password!).value();
 
                 if(!login) {
                     return;
@@ -37,7 +37,7 @@ class ProfilePage extends Block {
             },
             onClick: (e: Event) => {
                 e.preventDefault();
-                const page = e.target.getAttribute("page");
+                const page = (<HTMLInputElement>e.target).getAttribute("page");
                 navigate(page);
             }
             

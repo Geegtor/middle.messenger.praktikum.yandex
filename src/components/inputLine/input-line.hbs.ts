@@ -1,14 +1,8 @@
-import Block from "../../core/block";
+import Block, { Props } from "../../core/block";
 import * as styles from "./input-line.module.css"
 
-interface IProps {
-    classes: string,
-    placeholder: string,
-    onBlur: CallableFunction
-}
-
-export default class InputLine extends Block {
-    constructor(props: IProps) {
+class InputLine extends Block {
+    constructor(props: Props) {
         super({
             ...props,
             events: {
@@ -29,3 +23,5 @@ export default class InputLine extends Block {
         `)
     }
 }
+
+export default InputLine;

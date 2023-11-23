@@ -15,6 +15,5 @@ registerComponent('InputLine', Components.InputLine);
 registerComponent('SubmitButton', Components.SubmitButton);
 registerComponent('ChatCard', Components.ChatCard);
 registerComponent('ChatsList', Components.ChatsList);
-registerComponent('SetInput', Components.SetInput);
 
 document.addEventListener("DOMContentLoaded", () => render(new ErrorHandle()));

@@ -11,9 +11,9 @@ class SetPassword extends Block {
             },
             onLogin: (event:Event) => {
                 event.preventDefault();
-                const password = this.refs.password?.value();
-                const passwordNew = this.refs.passwordNew?.value();
-                const passwordConf = this.refs.passwordConf?.value();
+                const password = (<Block>this.refs.password!).value();
+                const passwordNew = (<Block>this.refs.passwordNew!).value();
+                const passwordConf = (<Block>this.refs.passwordConf!).value();
                 if (!password) {
                     return;
                 }
@@ -25,7 +25,7 @@ class SetPassword extends Block {
             },
             onClick: (e: Event) => {
                 e.preventDefault();
-                const page = e.target.getAttribute("page");
+                const page = (<HTMLInputElement>e.target).getAttribute("page");
                 navigate(page);
             }
         })

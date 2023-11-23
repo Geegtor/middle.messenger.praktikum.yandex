@@ -7,7 +7,7 @@ class ErrorHandle extends Block {
         super({
             onClick: (e: Event) => {
                 e.preventDefault();
-                const page = e.target.getAttribute("page");
+                const page = (<HTMLInputElement>e.target).getAttribute("page");
                 navigate(page);
             }
         });
