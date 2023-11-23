@@ -159,7 +159,7 @@ class Block {
     return temp.content;
   }*/
   private compile(template: string, context: Props & {__children?: {embed: (content: DocumentFragment) => void}[]}) {
-    const contextAndStubs: Props & {__refs: Record<string, HTMLElement>} = {...context, __refs: this.refs}; // eslint-disable-line
+    const contextAndStubs: Props & {__refs: Record<string, Block>} = {...context, __refs: this.refs};
 
     Object.entries(this.children).forEach(([key, child]) => {
       contextAndStubs[key] = `<div data-id="${child.id}"></div>`;
@@ -170,7 +170,7 @@ class Block {
     const temp = document.createElement('template');
 
     temp.innerHTML = html;
-    contextAndStubs.__children?.forEach((embed:any) => { // eslint-disable-line
+    (<Array<(content: DocumentFragment) => void>>contextAndStubs.__children)?.forEach(({embed}: any) => { // eslint-disable-line
       embed(temp.content);
     });
 
