@@ -15,12 +15,11 @@ class Block {
 
   public id = nanoid(6);
   protected props: Props;
-  protected refs: Record<string, Block | string> = {};
+  protected refs: Record<string, Block> = {};
   public children: Record<string, Block>;
   private eventBus: () => EventBus;
   private _element: HTMLInputElement | HTMLElement | null = null;
   private _meta: { props: Props; };
-  public value: CallableFunction = () => {};
 
   constructor(propsWithChildren: Props = {}) {
     const eventBus = new EventBus();
@@ -39,6 +38,11 @@ class Block {
     this._registerEvents(eventBus);
 
     eventBus.emit(Block.EVENTS.INIT);
+  }
+
+
+  public value() {
+    return '';
   }
 
   _getChildrenAndProps(childrenAndProps: Props) {
@@ -134,16 +138,16 @@ class Block {
   private compile(template: string, context: Props) {
     const contextAndStubs = {...context, __refs: this.refs};
 
-    Object.entries(this.children).forEach(([key, child]) => {// eslint-disable-line
-      contextAndStubs[key] = `<div data-id="${child.id}"></div>`;// eslint-disable-line
+    Object.entries(this.children).forEach(([key, child]) => {
+      contextAndStubs[key] = `<div data-id="${child.id}"></div>`;
     })
 
     const html = Handlebars.compile(template)(contextAndStubs);
 
     const temp = document.createElement('template');
 
-    temp.innerHTML = html;// eslint-disable-line
-    contextAndStubs.__children?.forEach(({embed}: any) => {// eslint-disable-line
+    temp.innerHTML = html;
+    contextAndStubs.__children?.forEach(({embed}: any) => {
       embed(temp.content);
     });
 

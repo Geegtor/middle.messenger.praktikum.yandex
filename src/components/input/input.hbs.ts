@@ -11,7 +11,7 @@ class Input extends Block {
     }
     public value() {
         if (!this.validate) {
-            return null;
+            return '';
         }
         return (<HTMLInputElement>this.refs.input.element!).value
     }
