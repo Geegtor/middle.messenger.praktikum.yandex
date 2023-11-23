@@ -134,7 +134,7 @@ class Block {
 
     this._addEvents();
   }
-  
+  /*
   private compile(template: string, context: Props) {
     const contextAndStubs = {...context, __refs: this.refs};
 
@@ -148,6 +148,29 @@ class Block {
 
     temp.innerHTML = html;
     contextAndStubs.__children?.forEach(({embed}: any) => {
+      embed(temp.content);
+    });
+
+    Object.values(this.children).forEach((child) => {
+      const stub = temp.content.querySelector(`[data-id="${child.id}"]`);
+      stub?.replaceWith(child.getContent()!);
+    })
+
+    return temp.content;
+  }*/
+  private compile(template: string, context: Props & {__children?: {embed: (content: DocumentFragment) => void}[]}) {
+    const contextAndStubs: Props & {__refs: Record<string, HTMLElement>} = {...context, __refs: this.refs}; // eslint-disable-line
+
+    Object.entries(this.children).forEach(([key, child]) => {
+      contextAndStubs[key] = `<div data-id="${child.id}"></div>`;
+    })
+
+    const html = Handlebars.compile(template)(contextAndStubs);
+
+    const temp = document.createElement('template');
+
+    temp.innerHTML = html;
+    contextAndStubs.__children?.forEach((embed:any) => { // eslint-disable-line
       embed(temp.content);
     });
 
