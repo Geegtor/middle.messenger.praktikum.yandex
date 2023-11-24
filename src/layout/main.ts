@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";import { registerComponent } from "../utils/registerComponents";
 
 import * as Components from "./../components";
-import { LoginPage, ProfilePage, RegisterPage } from "../pages"; 
+import { LoginPage } from "../pages"; 
 import { render } from "../utils/navigate";
 
 
