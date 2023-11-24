@@ -60,7 +60,7 @@ class Block {
     return {props, children};
   }
 
-  _addEvents() {
+  private _addEvents() {
     const {events = {}} = this.props as { events: Record<string, () => void> };
 
     Object.keys(events).forEach(eventName => {
@@ -68,12 +68,20 @@ class Block {
     });
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
+
+  private _removeEvents() {
+    const { events = {} } = this.props as { events: Record<string, () => void> };
+
+    Object.keys(events).forEach((eventName) => {
+        this._element?.removeEventListener(eventName, events[eventName]);
+    });
+}
 
   private _init() {
     this.init();
@@ -123,6 +131,8 @@ class Block {
 
   private _render() {
     const fragment = this.compile(this.render(), this.props);
+
+    this._removeEvents();
 
     const newElement = fragment.firstElementChild as HTMLElement;
 

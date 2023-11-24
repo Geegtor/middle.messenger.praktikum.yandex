@@ -39,9 +39,9 @@ class SetPassword extends Block {
                 <div class="${styles.formContainer}">
                 {{#> SetForm}}
                 <h2>chatID</h2>
-                    {{{ Input label="Старый пароль" name="password" ref="password" type="password" validate=validate.password}}}
-                    {{{ Input label="Новый пароль" name="password_new" ref="passwordNew" type="password" validate=validate.password}}}
-                    {{{ Input label="Повторите пароль" name="password_new_confirm" ref="passwordConf" type="password" validate=validate.password}}}
+                    {{{ Input label="Старый пароль" password="password" ref="password" type="password" validate=validate.password}}}
+                    {{{ Input label="Новый пароль" password="password_new" ref="passwordNew" type="password" validate=validate.password}}}
+                    {{{ Input label="Повторите пароль" password="password_new_confirm" ref="passwordConf" type="password" validate=validate.password}}}
                     {{{ SubmitButton label="Сохранить" onClick=onLogin page="ErrorHandle"}}}
                 {{/SetForm}}
                 </div>

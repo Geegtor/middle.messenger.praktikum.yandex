@@ -47,13 +47,13 @@ class RegisterPage extends Block {
         <div class="${styles.container}">
         {{#> StartForm}}
             <h2>Регистрация</h2>
-            {{{ Input label="Почта" name="email" ref="email" validate=validate.email}}}
-            {{{ Input label="Логин" name="login" ref="login" validate=validate.login}}}
-            {{{ Input label="Имя" name="first_name" ref="first_name" validate=validate.names}}}
-            {{{ Input label="Фамилия" name="second_name" ref="second_name" validate=validate.names}}}
-            {{{ Input label="Телефон" name="phone" ref="phone" validate=validate.phone}}}
-            {{{ Input label="Пароль" type="password" name="password" ref="password" validate=validate.password }}}
-            {{{ Input label="Пароль (ещё раз)" type="password"  name="password_confirm" validate=validate.password}}}            
+            {{{ Input label="Почта" email="email" ref="email" validate=validate.email}}}
+            {{{ Input label="Логин" login="login" ref="login" validate=validate.login}}}
+            {{{ Input label="Имя" first_name="first_name" ref="first_name" validate=validate.names}}}
+            {{{ Input label="Фамилия" second_name="second_name" ref="second_name" validate=validate.names}}}
+            {{{ Input label="Телефон" phone="phone" ref="phone" validate=validate.phone}}}
+            {{{ Input label="Пароль"  password="password" ref="password" validate=validate.password }}}
+            {{{ Input label="Пароль (ещё раз)" password="password"  name="password_confirm" validate=validate.password}}}            
             {{{ SubmitButton label="Зарегистрироваться" onClick=onLogin}}}
             {{{ Button label="Войти" type="link" page="ChatsPage" onClick = onClick }}}
             {{/StartForm}}

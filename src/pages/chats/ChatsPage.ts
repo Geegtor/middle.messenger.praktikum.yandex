@@ -61,7 +61,7 @@ export default class ChatsPage extends Block {
                             {{{ Button label="@" type="link" page="ProfilePage" onClick=onClick}}}
                         </div>
                         <div class="${styles.message}">
-                            {{{ Input placeholder="Сообщение" name="message" ref="message" validate=validate.empty}}}
+                            {{{ Input placeholder="Сообщение" message="message" ref="message" validate=validate.empty}}}
                         </div>
                         
                         <div class="${styles.attach}">

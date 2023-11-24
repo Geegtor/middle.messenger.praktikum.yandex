@@ -18,7 +18,8 @@ class InputLine extends Block {
                 class="${styles.element}"
                 placeholder="${placeholder || ''}"
                 ref="input"
-                type="{{type}}"
+                name="{{name}}"
+                {{#if type}}type={{type}}{{/if}}
             />
         `)
     }

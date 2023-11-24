@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";import { registerComponent } from "../utils/registerComponents";
 
 import * as Components from "./../components";
-import { ErrorHandle } from "../pages"; 
+import { LoginPage, ProfilePage, RegisterPage } from "../pages"; 
 import { render } from "../utils/navigate";
 
 
@@ -16,4 +16,4 @@ registerComponent('SubmitButton', Components.SubmitButton);
 registerComponent('ChatCard', Components.ChatCard);
 registerComponent('ChatsList', Components.ChatsList);
 
-document.addEventListener("DOMContentLoaded", () => render(new ErrorHandle()));
+document.addEventListener("DOMContentLoaded", () => render(new LoginPage()));

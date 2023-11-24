@@ -8,7 +8,7 @@ class ChatCard extends Block {
                 <img 
                     class="${styles.pic}" 
                     src="{{pic}}"
-                    alt=""
+                    alt="${this.value() || "photo"}"
                 />
         
                 <div class="${styles.message}">

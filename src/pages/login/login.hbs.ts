@@ -36,8 +36,8 @@ export default class LoginPage extends Block {
         <div class="${styles.container}">
             {{#> StartForm}}
                 <h2>Вход</h2>
-                {{{ Input label="Логин" name="login" ref="login" validate=validate.login}}}
-                {{{ Input label="Пароль" name="password" ref="password" type="password" validate=validate.password }}}
+                {{{ Input label="Логин" login="login" ref="login" validate=validate.login}}}
+                {{{ Input label="Пароль" password="password" ref="password" type="password" validate=validate.password }}}
                 {{{ SubmitButton label="Авторизоваться" onClick=onLogin}}}
                 {{{ Button label="Нет аккаунта?" type="link" page="RegisterPage" onClick=onClick}}}
             {{/StartForm}}
