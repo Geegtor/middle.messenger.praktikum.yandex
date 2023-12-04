@@ -1,0 +1,9 @@
+.element {
+    border: none;
+    padding: 0%;
+    border-bottom: 1px solid var(--main-color);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding-bottom: 7px;
+  }

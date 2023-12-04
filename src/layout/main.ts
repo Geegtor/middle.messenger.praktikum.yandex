@@ -1,34 +1,19 @@
+import Handlebars from "handlebars";import { registerComponent } from "../utils/registerComponents";
+
 import * as Components from "./../components";
-import * as Pages from "./../pages";
-import Handlebars from "handlebars";
+import { LoginPage } from "../pages"; 
+import { render } from "../utils/navigate";
 
 
-Object.entries(Components).forEach(([ name, component ]) => {
-  Handlebars.registerPartial(name, component);
-});
+Handlebars.registerPartial("StartForm", Components.StartForm);
+Handlebars.registerPartial("SetForm", Components.SetForm);
 
-const pages : { [key: string]: string[] }  = {
-  "LoginPage": [ Pages.LoginPage ],
-  "RegisterPage": [ Pages.RegisterPage ],
-  "ChatsPage": [Pages.ChatsPage],
-  "ProfilePage": [Pages.ProfilePage],
-  "PasswordPage": [Pages.SetPassword],
-  "ErrorHandle" : [Pages.ErrorHandle]
-};
+registerComponent("ErrorLine", Components.ErrorLine);
+registerComponent('Button', Components.Button);
+registerComponent('Input', Components.Input);
+registerComponent('InputLine', Components.InputLine);
+registerComponent('SubmitButton', Components.SubmitButton);
+registerComponent('ChatCard', Components.ChatCard);
+registerComponent('ChatsList', Components.ChatsList);
 
-function navigate(page: string): void {
-  const [ source, context ] = pages[page];
-  const container = document.getElementById("app");
-  container ? container.innerHTML = Handlebars.compile(source)(context) : null;
-}
-
-document.addEventListener("DOMContentLoaded", () => navigate("LoginPage"));
-
-document.addEventListener("click", (e: EventTarget | any): void => {
-  const page = e.target.getAttribute("page");
-  e.preventDefault();
-  e.stopImmediatePropagation();
-  if (page) {
-    navigate(page);
-  }
-});
+document.addEventListener("DOMContentLoaded", () => render(new LoginPage()));

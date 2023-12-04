@@ -1,14 +1,23 @@
+import Block, { Props } from "../../core/block";
 import * as styles from "./button.module.css"
 
-const submitButton : string = `
-    <div class="${styles.caption}"></div>
-    <input 
-        class="${styles.button}" 
-        page="{{page}}"
-        type="submit"
-        value="{{label}}"
-        name="submit"
-    />
-`;
+class SubmitButton extends Block {
+    constructor(props: Props) {
+        super(props);
+        this.props.events = {
+            click: this.props.onClick || (() => {})
+        }
+    }
 
-export default submitButton;
+    protected render():string {
+        return(`
+            <button 
+                class="${styles.button} {{#if arrow}}${styles.buttonArrow}{{/if}}" 
+                page="{{page}}"
+                >
+                    {{label}}
+            </button>
+        `)
+    }
+}
+export default SubmitButton;

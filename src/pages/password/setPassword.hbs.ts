@@ -1,21 +1,53 @@
+import Block from "../../core/block";
 import * as styles from "./setPassword.module.css";
+import * as validators from "../../utils/validator";
+import { navigate } from "../../utils/navigate";
 
-const SetPassword = `
-    <div class="${styles.container}">
-        <div class="${styles.buttonContainer}" page="ChatsPage">
-            {{> Button arrow="true" label="<-" page="ChatsPage"}}
+class SetPassword extends Block {
+    constructor() {
+        super({
+            validate: {
+                password: validators.password,
+            },
+            onLogin: (event:Event) => {
+                event.preventDefault();
+                const password = (<Block>this.refs.password!).value();
+                const passwordNew = (<Block>this.refs.passwordNew!).value();
+                const passwordConf = (<Block>this.refs.passwordConf!).value();
+                if (!password) {
+                    return;
+                }
+                console.log({
+                    password,
+                    passwordNew,
+                    passwordConf
+                })
+            },
+            onClick: (e: Event) => {
+                e.preventDefault();
+                const page = (<HTMLInputElement>e.target).getAttribute("page");
+                navigate(page);
+            }
+        })
+    }
+    protected render(): string {
+        return (`
+            <div class="${styles.container}">
+                <div class="${styles.buttonContainer}" page="ErrorHandle">
+                    {{{ Button arrow="true" label="<-" page="ErrorHandle" onClick=onClick}}}
+                </div>
+                <div class="${styles.formContainer}">
+                {{#> SetForm}}
+                <h2>chatID</h2>
+                    {{{ Input label="Старый пароль" password="password" ref="password" type="password" validate=validate.password}}}
+                    {{{ Input label="Новый пароль" password="password_new" ref="passwordNew" type="password" validate=validate.password}}}
+                    {{{ Input label="Повторите пароль" password="password_new_confirm" ref="passwordConf" type="password" validate=validate.password}}}
+                    {{{ SubmitButton label="Сохранить" onClick=onLogin page="ErrorHandle"}}}
+                {{/SetForm}}
+                </div>
+            </div>
         </div>
-        <div class="${styles.formContainer}">
-        {{#> SetForm}}
-        <h2>chatID</h2>
-            {{> SetInput label="Старый пароль" name="password" type ="password" on=true}}
-            {{> SetInput label="Новый пароль" name="password_new" type ="password" on=true}}
-            {{> SetInput label="Повторите пароль" name="password_new_confirm" type ="password" on=true}}
-            {{> SubmitButton label="Сохранить" page="ErrorHandle"}}
-        {{/SetForm}}
-        </div>
-    </div>
-    </div>
-`;
-
+        `)
+    }
+}
 export default SetPassword;
