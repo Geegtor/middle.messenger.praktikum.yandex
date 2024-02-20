@@ -1,7 +1,7 @@
 import {nanoid} from 'nanoid';
 import Handlebars from "handlebars";
 import EventBus from './event-bus';
-import objectCompare from '../utils/objectCompare';
+import compare from '../../utils/compare';
 
 export type Props = Record<string, unknown>;
 
@@ -113,7 +113,7 @@ class Block {
   }
 
   protected componentDidUpdate(oldProps: Props, newProps: Props) {
-    return !(objectCompare(oldProps, newProps));
+    return !(compare(oldProps, newProps));
   }
 
   setProps = (nextProps: Props) => {
@@ -173,7 +173,8 @@ class Block {
     return '';
   }
 
-  getContent() {
+  getContent(cdm: boolean = false) {
+    cdm ? this.dispatchComponentDidMount() : null;
     return this.element;
   }
 

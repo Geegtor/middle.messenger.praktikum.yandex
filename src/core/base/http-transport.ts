@@ -1,4 +1,5 @@
-import { queryStringify } from "../utils/queryString";
+import { queryStringify } from "../../utils/queryString";
+import constants from "../constants";
 
 const METHODS = {
 	GET: 'GET',
@@ -16,7 +17,13 @@ type OptionsType = {
 
 type HTTPMethod = (url: string, options?: OptionsType) => Promise<unknown>
 
-export default class HTTPTransport {
+class HTTPTransport {
+	private URL: string = constants.HOST;
+
+	public buildURL(path: string) {
+		return `${this.URL}${path}`
+	}
+	
 	public get: HTTPMethod = (url, options = {}) => {
 		return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
 	};
@@ -38,6 +45,7 @@ export default class HTTPTransport {
 
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
+			xhr.withCredentials = true;
 
 			if (method === METHODS.GET && data) {
 				xhr.open(method, `${url}${queryStringify(data as Record<string, unknown>)}`);
@@ -49,19 +57,40 @@ export default class HTTPTransport {
 				xhr.setRequestHeader(key, headers[key])
 			}
 
-			xhr.onload = function () {
-				resolve(xhr);
-			}
+			xhr.onload = function (e: ProgressEvent<EventTarget>) {
+				const request = e.target as XMLHttpRequest;
+				if (request.status !== 200) {
+					reject( new Error (JSON.parse(request.response).reason));
+					return;
+				}
+
+				let response;
+				try {
+					response = JSON.parse(xhr.response);
+				} catch {
+					response = xhr.response;
+				}
+				resolve({
+					status: xhr.status,
+					response
+				});
+			};
+
 			xhr.timeout = timeout;
 			xhr.onerror = reject;
 			xhr.onabort = reject;
 			xhr.ontimeout = reject;
-
+			// try catch ? 
 			if (method === METHODS.GET) {
 				xhr.send();
-			} else if (data) {
-				xhr.send(data as XMLHttpRequestBodyInit);
+			} else if (data instanceof FormData) {
+				xhr.send(data)
+			} else {
+				xhr.send(JSON.stringify(data));
 			}
 		})
 	};
 }
+
+const HTTP = new HTTPTransport();
+export { HTTP as HTTP };
