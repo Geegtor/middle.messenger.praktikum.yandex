@@ -1,4 +1,4 @@
-import Block, { Props } from "../../core/block";
+import Block, { Props } from "../../core/base/block";
 import * as styles from "./input-line.module.css"
 
 class InputLine extends Block {
@@ -19,6 +19,7 @@ class InputLine extends Block {
                 placeholder="${placeholder || ''}"
                 ref="input"
                 name="{{name}}"
+                value={{#if value}}{{value}}{{else}}""{{/if}}
                 {{#if type}}type={{type}}{{/if}}
             />
         `)

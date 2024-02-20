@@ -1,0 +1,6 @@
+.option {
+    border: 1px solid gray;
+    min-width: 200px;
+    height: 20px;
+    outline: none;
+}

@@ -1,4 +1,4 @@
-import Block, { Props } from "../../core/block";
+import Block, { Props } from "../../core/base/block";
 import * as styles from "./button.module.css"
 
 class SubmitButton extends Block {
