@@ -1,14 +1,12 @@
-import Block from "../../core/block";
-import { navigate } from "../../utils/navigate";
+import Block from "../../core/base/block";
+import { Router } from "../../core/router";
 import * as styles from "./errorPage.module.css";
 
 class ErrorHandle extends Block {
     constructor() {
         super({
-            onClick: (e: Event) => {
-                e.preventDefault();
-                const page = (<HTMLInputElement>e.target).getAttribute("page");
-                navigate(page);
+            onClick: () => {
+                Router.go("/settings")
             }
         });
         this.props.reqError = "404";

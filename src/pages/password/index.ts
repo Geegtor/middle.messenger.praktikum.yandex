@@ -1,1 +1,1 @@
-export { default as SetPassword } from "./setPassword.hbs.ts"
+export { SetPassword } from "./setPassword.hbs.ts"

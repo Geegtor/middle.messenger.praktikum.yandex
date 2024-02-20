@@ -1,7 +1,10 @@
-import Block from "../../core/block";
+import Block from "../../core/base/block";
 import * as styles from "./setPassword.module.css";
 import * as validators from "../../utils/validator";
-import { navigate } from "../../utils/navigate";
+import { getRefs } from "../../utils/getRefs";
+import { UserController } from "../../controllers/user";
+import { connect } from "../../utils/connect";
+import { Router } from "../../core/router";
 
 class SetPassword extends Block {
     constructor() {
@@ -9,24 +12,24 @@ class SetPassword extends Block {
             validate: {
                 password: validators.password,
             },
-            onLogin: (event:Event) => {
-                event.preventDefault();
-                const password = (<Block>this.refs.password!).value();
-                const passwordNew = (<Block>this.refs.passwordNew!).value();
-                const passwordConf = (<Block>this.refs.passwordConf!).value();
-                if (!password) {
-                    return;
-                }
-                console.log({
-                    password,
-                    passwordNew,
-                    passwordConf
-                })
+            validatePassMatch: (pass: string) => {
+                const newPass = (this.refs.passwordNew).value();
+                return pass === newPass ? "" : "Entered passwords mismatch"
             },
-            onClick: (e: Event) => {
-                e.preventDefault();
-                const page = (<HTMLInputElement>e.target).getAttribute("page");
-                navigate(page);
+            setNewPassword: () => {
+                const values = getRefs(this.refs);
+                const passwords = {
+                    oldPassword: values.password, 
+                    newPassword: values.passwordNew
+                }
+                if (Object.values(values).some(x => !x)) {
+                    return null;
+                }
+                UserController.changeUserPasword(passwords)
+                    .catch(e => alert(e.message))
+            },
+            back: () => {
+                Router.go("/settings")
             }
         })
     }
@@ -34,15 +37,14 @@ class SetPassword extends Block {
         return (`
             <div class="${styles.container}">
                 <div class="${styles.buttonContainer}" page="ErrorHandle">
-                    {{{ Button arrow="true" label="<-" page="ErrorHandle" onClick=onClick}}}
+                    {{{ Button arrow="true" label="<-" page="ErrorHandle" onClick=back}}}
                 </div>
                 <div class="${styles.formContainer}">
                 {{#> SetForm}}
-                <h2>chatID</h2>
                     {{{ Input label="Старый пароль" password="password" ref="password" type="password" validate=validate.password}}}
                     {{{ Input label="Новый пароль" password="password_new" ref="passwordNew" type="password" validate=validate.password}}}
-                    {{{ Input label="Повторите пароль" password="password_new_confirm" ref="passwordConf" type="password" validate=validate.password}}}
-                    {{{ SubmitButton label="Сохранить" onClick=onLogin page="ErrorHandle"}}}
+                    {{{ Input label="Повторите пароль" password="password_new_confirm" ref="passwordConf" type="password" validate=validatePassMatch}}}
+                    {{{ SubmitButton label="Сохранить" onClick=setNewPassword }}}
                 {{/SetForm}}
                 </div>
             </div>
@@ -50,4 +52,6 @@ class SetPassword extends Block {
         `)
     }
 }
-export default SetPassword;
+
+const HOC = connect(({user}) => ({user}))(SetPassword);
+export { HOC as SetPassword };
