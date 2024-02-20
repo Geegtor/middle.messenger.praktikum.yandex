@@ -17,7 +17,7 @@ class UserController {
         return await UserService.changeProfile(user)
             .then( (data) => {
                 Store.set({ user: data.response });
-                Router.go("/messanger");
+                Router.go("/messenger");
             });
     }
 

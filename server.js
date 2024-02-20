@@ -18,8 +18,8 @@ app.get("/settings", function (req, res) {
 });
 
 
-app.get("/messanger", function (req, res) {
-  res.send("hello messanger");
+app.get("/messenger", function (req, res) {
+  res.send("hello messenger");
 });
 
 app.listen(port, () => {

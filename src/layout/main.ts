@@ -37,7 +37,7 @@ enum Routes {
   Signup = "/sign-up",
   Profile = "/settings",
   Password = "/password",
-  Messanger = "/messanger" 
+  Messanger = "/messenger" 
 }
 
 Router.start();
@@ -64,7 +64,7 @@ async function start (): Promise<void> {
       Router.go("/password");
       break;
     case Routes.Messanger:
-      Router.go("/messanger");
+      Router.go("/messenger");
       break
   }
 }

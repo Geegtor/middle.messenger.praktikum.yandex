@@ -16,7 +16,7 @@ class AuthController {
         return await AuthService.signIn(login, password)
             .then(() => {                
                 this.getUserInfo()
-                Router.go("/messanger")
+                Router.go("/messenger")
             });
     }
 
@@ -24,7 +24,7 @@ class AuthController {
         return await AuthService.signUp(user)
             .then(() => {
                 this.getUserInfo();
-                Router.go("/messanger");
+                Router.go("/messenger");
             });
     }
 

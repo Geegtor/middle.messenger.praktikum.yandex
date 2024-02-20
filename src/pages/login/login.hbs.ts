@@ -31,7 +31,7 @@ class LoginPage extends Block {
                     })
                     .catch(e => {
                         e.message == "User already in system"  ?
-                        Router.go("/messanger") :
+                        Router.go("/messenger") :
                         alert(e.message)
                     })
             },

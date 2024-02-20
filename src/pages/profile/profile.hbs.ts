@@ -20,7 +20,7 @@ class ProfilePage extends Block {
                 phone: validators.phone
             },
             back: () => {
-                Router.go("/messanger")
+                Router.go("/messenger")
             },
             changeHandler: (e: Event) => {
                 e.preventDefault();
