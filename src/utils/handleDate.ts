@@ -43,4 +43,3 @@ export const formatDateTime = (value?: Date | string) => {
     }
     return isToday(value) ? `${formatTime(value)}` : `${formatDate(value)}`;
 };
-  

@@ -1,5 +1,5 @@
 import Block, { Props } from "../core/base/block"
-import  { StoreEvents } from "../core/store"
+import  { StoreClass, StoreEvents } from "../core/store"
 import AppStore from "../types"
 import compare from "./compare"
 
@@ -9,7 +9,7 @@ export function connect(mapStateToProps: (state: AppStore) => Partial<AppStore>)
         return class extends Component {
             private onChangeStoreCallback: () => void;  
             constructor(props: Props) {
-                const store = window.store;
+                const store: StoreClass = <StoreClass>window.store;
                 let state = mapStateToProps(store.getState());
 
                 super({...props, ...state});

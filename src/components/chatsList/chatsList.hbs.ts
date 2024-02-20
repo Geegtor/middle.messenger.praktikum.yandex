@@ -2,7 +2,7 @@ import { ChatsController } from "../../controllers/chats";
 import Block from "../../core/base/block";
 import WS from "../../core/base/ws-transport";
 import { Store } from "../../core/store";
-import { Chat, Indexed, Message, Resp, User } from "../../types";
+import { Chat, Indexed, Message, User } from "../../types";
 import { connect } from "../../utils/connect";
 import { formatDateTime } from "../../utils/handleDate";
 
@@ -29,10 +29,10 @@ class ChatsList extends Block {
     public chatConnect(chat: Chat) {
         ChatsController.getChatToken(chat.id)
             .then( token => {
-                Store.set({ token: (<Resp>token).response.token }); 
+                Store.set({ token: token.response.token }); 
                 ChatsController.getUsers(chat.id)
                     .then( (data) => {
-                        const users = (<Resp>data).response;
+                        const users = data.response;
                         const messages = (messages: Message[]) => {
                             const newMessages = messages.map(m => ({
                                 userName: users.find((u: User) => u.id == m.user_id)?.login,
@@ -42,7 +42,7 @@ class ChatsList extends Block {
                             }));
                             Store.set({ messages: [...newMessages, ...Store.getState().messages]})
                         };
-                        WS.connect((<User>this.props.user).id, chat.id, (<Resp>token).response.token, messages);
+                        WS.connect((<User>this.props.user).id, chat.id, token.response.token, messages);
                     })
                     .catch(e => alert(e.meesage));
             })

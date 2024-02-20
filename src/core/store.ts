@@ -6,7 +6,7 @@ export enum StoreEvents  {
     Updated = "Updated"
 }
 
-class Store extends EventBus {
+export class StoreClass extends EventBus {
     private _state: AppStore = {} as AppStore;
 
     constructor() {
@@ -36,7 +36,7 @@ class Store extends EventBus {
         if(window.store) {
             const emptyStore = new AppStore();
             this._state = emptyStore;
-            window.store.set(emptyStore);
+            (<StoreClass>window.store).set(emptyStore);
             sessionStorage.set("state", JSON.stringify(emptyStore));
         }
     }
@@ -53,5 +53,5 @@ class Store extends EventBus {
     }
 }
 
-const store = new Store();
+const store = new StoreClass();
 export { store as Store };
