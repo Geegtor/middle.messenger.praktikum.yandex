@@ -5,6 +5,7 @@ import WS from "../../core/base/ws-transport";
 import { Store } from "../../core/store";
 import { Chat, Indexed, MessageCard } from "../../types";
 import { connect } from "../../utils/connect";
+import { Input } from "..";
 
 interface ChatMessengerProps extends Indexed {
     chat: Chat,
@@ -23,8 +24,8 @@ class ChatMessenger extends Block {
                 Store.set({ isMenuOpened: true })
             },
             sendMessage: () => {
-                if ((this.refs?.message).value()) {
-                    WS.sendMessage((this.refs?.message).value());
+                if ((this.refs.message as Input).value()) {
+                    WS.sendMessage((this.refs.message as Input).value());
                 }
             }
         });

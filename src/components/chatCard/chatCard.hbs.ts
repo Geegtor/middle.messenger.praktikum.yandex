@@ -3,20 +3,20 @@ import { Chat, Indexed } from "../../types";
 import { formatDateTime } from "../../utils/handleDate";
 import * as styles from "./chatCard.module.css";
 
-interface ChatCard extends Indexed {
+interface ChatCardProps extends Indexed {
     chat: Chat,
     onSelect: (chat: Chat) => void;
 }
 
 class ChatCard extends Block {
-    constructor(props: ChatCard) {
+    constructor(props: ChatCardProps) {
         super({
             ...props,
             lastReplay: formatDateTime(props.chat?.last_message?.time)
         })
 
         this.props.events = {
-            click: () => (<ChatCard>this.props).onSelect(props.chat),
+            click: () => (<ChatCardProps>this.props).onSelect(props.chat),
         }
     }
     protected render():string {
