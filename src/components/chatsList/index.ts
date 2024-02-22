@@ -1,1 +1,1 @@
-export {default as ChatsList} from "./chatsList.hbs.ts"
+export { ChatsList } from "./chatsList.hbs.ts"

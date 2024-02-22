@@ -1,27 +1,48 @@
-import Block from "../../core/block";
+import Block from "../../core/base/block";
+import { Chat, Indexed } from "../../types";
+import { formatDateTime } from "../../utils/handleDate";
 import * as styles from "./chatCard.module.css";
 
+interface ChatCardProps extends Indexed {
+    chat: Chat,
+    onSelect: (chat: Chat) => void;
+}
+
 class ChatCard extends Block {
+    constructor(props: ChatCardProps) {
+        super({
+            ...props,
+            lastReplay: formatDateTime(props.chat?.last_message?.time)
+        })
+
+        this.props.events = {
+            click: () => (<ChatCardProps>this.props).onSelect(props.chat),
+        }
+    }
     protected render():string {
         return (`
             <div class="${styles.container} {{#if selected}}${styles.selected} {{/if}}">
                 <img 
                     class="${styles.pic}" 
-                    src="{{pic}}"
-                    alt="${this.value() || "photo"}"
+                    alt="photo"
+                    {{#if chat.avatar}}
+                        src="https://ya-praktikum.tech/api/v2/resources{{chat.avatar}}"
+                        width="50px" 
+                        height="50px"
+                    {{/if}}
                 />
         
                 <div class="${styles.message}">
-                    {{chatID}}<br>
-                    {{message}}
+                    <b>{{chat.title}}</b><br>
+                    {{chat.last_message.content}}
                 </div>
         
                 <div class="${styles.caption}"></div>
                 
                 <div class="${styles.info}">
-                    <b>{{time}}</b>
-                    <div class="${styles.red} {{#if unred}}${styles.unred}{{/if}}">
-                        {{unred}}
+                    <b>{{lastReplay}}</b>
+                    <div class="${styles.red} {{#if chat.unread_count}}${styles.unred}{{/if}}">
+                    {{#if chat.unread_count}}{{chat.unread_count}}{{/if}}
                     </div>
                 </div>
             </div>

@@ -1,0 +1,26 @@
+.avatar {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 1px solid grey;
+}
+
+h2 {
+    text-align: center;
+}
+
+.avatar:hover {
+    background-color: grey;
+    cursor: pointer;
+    color: white;
+    content: hange;
+}
+
+.avatar:hover::after{
+    content: 'Поменять аватар';
+}

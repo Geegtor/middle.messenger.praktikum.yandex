@@ -1,7 +1,11 @@
-import Block from "../../core/block";
+import Block from "../../core/base/block";
 import * as styles from "./register.module.css";
 import * as validators from "../../utils/validator";
-import { navigate } from "../../utils/navigate";
+import { Router } from "../../core/router";
+import { getRefs } from "../../utils/getRefs";
+import { User } from "../../types";
+import { Input } from "../../components";
+import { AuthController } from "../../controllers/auth";
 
 class RegisterPage extends Block {
     constructor() {
@@ -12,33 +16,19 @@ class RegisterPage extends Block {
                 names: validators.names,
                 email: validators.email,
                 phone: validators.phone,
-
             },
-            onLogin: (event: Event) => {
+            onSignUp: (event: Event) => {
                 event.preventDefault();
-                const email =  (<Block>this.refs.email!).value();
-                const login =  (<Block>this.refs.login!).value();
-                const first_name =  (<Block>this.refs.first_name!).value();
-                const second_name =  (<Block>this.refs.second_name!).value();
-                const phone =  (<Block>this.refs.login!).value();
-                const password =  (<Block>this.refs.password!).value();
-
-                if(!login) {
+                const values = getRefs(this.refs as Record<keyof User, Input>) as unknown as User;
+                if (Object.values(values).some(x => !x)) {
                     return;
                 }
-                console.log({
-                    email,
-                    login,
-                    first_name,
-                    second_name,
-                    phone,
-                    password
-                })
+                AuthController.signUp(values)
+                    .catch(e => alert(e.message))
             },
             onClick: (e: Event) => {
                 e.preventDefault();
-                const page = (<HTMLInputElement>e.target).getAttribute("page");
-                navigate(page);
+                Router.go("/")
             }
         });
     }
@@ -54,7 +44,7 @@ class RegisterPage extends Block {
             {{{ Input label="Телефон" phone="phone" ref="phone" validate=validate.phone}}}
             {{{ Input label="Пароль"  password="password" ref="password" validate=validate.password }}}
             {{{ Input label="Пароль (ещё раз)" password="password"  name="password_confirm" validate=validate.password}}}            
-            {{{ SubmitButton label="Зарегистрироваться" onClick=onLogin}}}
+            {{{ SubmitButton label="Зарегистрироваться" onClick=onSignUp}}}
             {{{ Button label="Войти" type="link" page="ChatsPage" onClick = onClick }}}
             {{/StartForm}}
         </div>

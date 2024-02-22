@@ -1,0 +1,15 @@
+.profile {
+    display: flex;
+    justify-content: flex-end;
+    color: var(--text-secondary-color);
+    align-items: center;
+    padding-right: 10px;
+    height: 45px;
+    background-color: white;
+}
+
+.button{
+    border: 0;
+    color: var(--text-secondary-color);
+    background-color: white;
+}

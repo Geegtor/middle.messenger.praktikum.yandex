@@ -1,1 +1,1 @@
-export {default as ProfilePage} from "./profile.hbs.ts";
+export {ProfilePage} from "./profile.hbs.ts";
