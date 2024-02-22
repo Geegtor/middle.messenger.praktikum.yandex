@@ -18,7 +18,7 @@ describe("Router tests", () => {
     before(() => {
         class TestClass extends Block {
             constructor(props: Props){
-                super();
+                super(props);
             }
             protected render() {
                 return "<div>data</div>"
