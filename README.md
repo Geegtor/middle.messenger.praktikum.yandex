@@ -36,7 +36,7 @@ PR:
  - sprint_3: https://github.com/Geegtor/middle.messenger.praktikum.yandex/pull/3
  - sprint_4: https://github.com/Geegtor/middle.messenger.praktikum.yandex/pull/4
 
-Netlify: https://ubiquitous-banoffee-df6090.netlify.app/
+Netlify: https://deploy--musical-queijadas-33aa37.netlify.app/
 
 
 ## Установка и запуск
