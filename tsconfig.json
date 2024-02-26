@@ -5,6 +5,11 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "types": [
+      "vite/client",
+      "mocha", 
+      "node"
+    ],
 
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -19,6 +24,13 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true
+  },
+
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "transpileOnly": true,
+    "require": ["tsconfig-paths/register"]
   },
   "include": ["src", "./typings.d.ts"]
 }

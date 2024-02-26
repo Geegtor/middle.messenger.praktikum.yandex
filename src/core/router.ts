@@ -2,16 +2,16 @@ import Block from "./base/block";
 import { Route } from "./route"
 
 
-class Router {
-  static __instance: Router;
+export class RouterClass {
+  static __instance: RouterClass;
   private routes: Route[] = [];
   private history = window.history;
   private _currentRoute: Route | null = null;
   private _rootQuery: string = "";
 
   constructor(rootQuery: string) {
-    if (Router.__instance) {
-      return Router.__instance;
+    if (RouterClass.__instance) {
+      return RouterClass.__instance;
     }
 
     this.routes = [];
@@ -19,7 +19,7 @@ class Router {
     this._currentRoute = null;
     this._rootQuery = rootQuery;
 
-    Router.__instance = this;
+    RouterClass.__instance = this;
   }
 
   getRoute(pathname: string) {
@@ -65,6 +65,6 @@ class Router {
   }
 }
 
-const router = new Router("app");
+const router = new RouterClass("app");
 
 export { router as Router }

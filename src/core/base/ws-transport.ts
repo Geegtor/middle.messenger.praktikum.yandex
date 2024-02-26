@@ -3,7 +3,7 @@ import EventBus from "./event-bus";
 
 class WebSocketTransort extends EventBus {
     private _socket?: WebSocket | null;
-    private _interval?: number;
+    private _interval?: NodeJS.Timeout;
     private _user?: number;
     private _chat?: number;
     private _token?: string;

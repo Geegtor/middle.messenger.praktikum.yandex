@@ -17,7 +17,7 @@ type OptionsType = {
 
 type HTTPMethod = (url: string, options?: OptionsType) => Promise<unknown>
 
-class HTTPTransport {
+export class HTTPTransport {
 	private URL: string = constants.HOST;
 
 	public buildURL(path: string) {

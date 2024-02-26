@@ -55,5 +55,5 @@ export default class ChatsPage extends Block {
 
 }
 
- const MSNGR = connect( ({ chats }) => ( { chats }))(ChatsPage);
- export { MSNGR as ChatsPage };
+const MSNGR = connect( ({ chats }) => ( { chats }))(ChatsPage);
+export { MSNGR as ChatsPage };
